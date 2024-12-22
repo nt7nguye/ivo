@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import { BlockProps } from './components/Block';
+import { MentionProps } from './components/Mention';
 
 type EditorContext = {
-    mentions: Record<string, BlockProps>;
-    updateMention: (id: string, value: BlockProps) => void;
+    mentions: Record<string, MentionProps>;
+    updateMention: (id: string, value: MentionProps) => void;
 };
 
 export const EditorContext = createContext<EditorContext>({

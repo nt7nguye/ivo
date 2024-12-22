@@ -1,13 +1,38 @@
 import BlockChildRenderer from "./BlockChildRender";
 import { BlockProps } from "./Block";
+import { useContext, useEffect, useMemo } from 'react';
+import { EditorContext } from "../Provider";
 import { TextProps } from "./Text";
-import { Mark } from "./types";
 
-export type MentionProps = {
-    children: (BlockProps | TextProps)[];
-} & Mark;
+export type MentionProps = BlockProps & {
+    type: 'mention',
+    id: string;
+    value: string;
+};
 
-function Mention({children, color}: MentionProps) {
+function Mention(props: MentionProps) {
+    const { id, color, value } = props;
+
+    // Mention doesn't inherit styles if I understand the spec correctly
+    const { mentions, updateMention } = useContext(EditorContext);
+
+    // On first mount, check if there's a value in the mention map, if not populate it
+    useEffect(() => {
+        if (!mentions[id]) {
+            updateMention(id, props);
+        }
+    }, [id, mentions, props, updateMention])
+
+    const handleInput = (e: React.ChangeEvent<HTMLParagraphElement>) => {
+        // This doesn't handle child changes yet. But it works for 1 level
+        if (e.target.innerText !== value) {
+            updateMention(id, { ...props, value: e.target.innerText, children: [{
+                ...props.children[0],
+                text: e.target.innerText
+            } as TextProps] });
+        }
+    }
+
     return (
         <div 
             style={{
@@ -16,10 +41,14 @@ function Mention({children, color}: MentionProps) {
                 padding: '0 4px',  // horizontal padding
                 borderRadius: '4px'
             }}
+            contentEditable
+            onInput={handleInput}
         >
-            {children.map((child) => (
-                <BlockChildRenderer {...child} />
-            ))}
+            <div>
+                {mentions[id] && mentions[id].children.map((child) => (
+                    <BlockChildRenderer {...child}/>
+                ))}
+            </div>
         </div>
     )
 }
