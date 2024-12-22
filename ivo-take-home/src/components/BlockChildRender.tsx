@@ -6,7 +6,7 @@ import Text from './Text';
 import { useContext } from "react";
 import { EditorContext } from "../Provider";
 
-function isText(child: BlockProps | TextProps): child is TextProps{
+export function isText(child: BlockProps | TextProps): child is TextProps{
     return !('type' in child);
 }
 

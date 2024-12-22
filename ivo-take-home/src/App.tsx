@@ -9,6 +9,8 @@ function App() {
       type: 'block',
       title: 'container',
       children: inputData,
+      clauseLevel: 0,
+      clauseNumbering: 1,
     }} />
   )
 }
