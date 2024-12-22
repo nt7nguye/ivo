@@ -1,5 +1,5 @@
 
-type TextProps = {
+export type TextProps = {
     text: string;
     bold?: boolean;
     italic?: boolean;
