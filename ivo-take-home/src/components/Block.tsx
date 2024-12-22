@@ -31,7 +31,7 @@ function Block({title, type, children, ...mark}: BlockProps) {
 
     const Component = type;
     return (
-        <Component title={title}>
+        <Component title={title} >
             {children.map(
                 (child) => {
                     if (isBlock(child)) {
