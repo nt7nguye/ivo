@@ -27,7 +27,7 @@ function Block({title, type, children}: BlockProps) {
             </>
         )
     }
-    
+
     const Component = type;
     return (
         <Component title={title}>
