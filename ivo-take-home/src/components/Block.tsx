@@ -1,7 +1,9 @@
-import Text, { type TextProps } from "./Text";
+import BlockChildRenderer from "./BlockChildRender";
+import Mention from "./Mention";
+import { type TextProps } from "./Text";
 import type { Mark } from "./types";
 
-type BlockType =  'clause' | 'block' |'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
+type BlockType =  'mention' | 'clause' | 'block' |'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 
 
 export type BlockProps = {
@@ -10,16 +12,6 @@ export type BlockProps = {
     children: (BlockProps | TextProps)[];
 } & Mark;
 
-function isBlock(child: BlockProps | TextProps): child is BlockProps {
-    return 'type' in child;
-}
-
-function BlockChildRenderer(child: BlockProps | TextProps) {
-    if (isBlock(child)) {
-        return <Block {...child} />;
-    }
-    return <Text {...child} />;
-}
 
 function Block({title, type, children, ...mark}: BlockProps) {
     if (type === "block") {
@@ -41,6 +33,7 @@ function Block({title, type, children, ...mark}: BlockProps) {
             </div>
         )
     }
+
     const handleInput = (e: React.ChangeEvent<HTMLParagraphElement>) => {
         console.log(e.target.innerText);
     }

@@ -3,13 +3,10 @@ import Block, { BlockProps } from "./components/Block";
 import { EditorContext } from "./Provider";
 
 function Editor({input}: {input: BlockProps}) {
-    const [mentions, setMentions] = useState<Record<string, string>>({});
+    const [mentions, setMentions] = useState<Record<string, BlockProps>>({});
 
-    const updateMention = (id: string, value: string) => {
-        setMentions(prev => ({
-            ...prev,
-            [id]: value
-        }));
+    const updateMention = (id: string, value: BlockProps) => {
+        console.log(value);
     };
 
     return (

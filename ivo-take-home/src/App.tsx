@@ -17,7 +17,7 @@ function App() {
         },
         {
           "color": "rgb(175, 56, 235)",
-          "type": "p",    // "type": "mention",
+          "type": "mention",
           "title": "Service Provider's Name",
           "children": [
             {
@@ -39,7 +39,7 @@ function App() {
         },
         {
           "color": "rgb(175, 184, 59)",
-          "type": "p",    // "type": "mention",
+          "type": "mention",
           "title": "Client's Name",
           "children": [
             {
