@@ -2,7 +2,7 @@ import BlockChildRenderer from "./BlockChildRender";
 import Text, { type TextProps } from "./Text";
 import type { Mark } from "./types";
 
-type BlockType =  'mention' | 'clause' | 'block' |'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
+type BlockType =  'mention' | 'clause' | 'ul' | 'li' | 'lic' | 'block' |'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 
 
 export type BlockProps = {
@@ -41,22 +41,13 @@ function Block({title, type, children, ...mark}: BlockProps) {
         console.log(e.target.innerText);
     }
     if (type === 'p') {
-        if (children) {
-            return (
-                <p contentEditable suppressContentEditableWarning onInput={handleInput} style={{ display: 'inline'}}>
-                    {children.map(
-                        (child, index) => <BlockChildRenderer key={index} {...mark} {...child} />
-                    )}
-                </p>
-            )
-        }
-        // There's a weird case with p tag but no children, its just raw text
-        else {
-            return (
-                <Text {...mark} text={title} />
-            )
-        }
-        
+        return (
+            <p contentEditable suppressContentEditableWarning onInput={handleInput} style={{ display: 'inline'}}>
+                {children.map(
+                    (child, index) => <BlockChildRenderer key={index} {...mark} {...child} />
+                )}
+            </p>
+        )
     }
 
     const Component = type;

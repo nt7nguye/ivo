@@ -15,6 +15,11 @@ function BlockChildRenderer(child: BlockProps | TextProps) {
     if (isText(child)) {
         return <Text {...child} />;
     }
+    if (
+        child.type === 'p' && !child.children
+    ) {
+        return <Text {...child} />;
+    }
     if (child.type === 'mention') {
         if (child.id){
             if (!mentions[child.id]) {

@@ -14,7 +14,7 @@ function Editor({input}: {input: BlockProps}) {
 
     return (
         <EditorContext.Provider value={{ mentions, updateMention }}>
-            <Block {...input} />
+            <Block {...input} clauseLevel={0}/>
         </EditorContext.Provider>
     );
 }
