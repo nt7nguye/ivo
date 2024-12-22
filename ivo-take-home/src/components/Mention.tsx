@@ -8,14 +8,16 @@ export type MentionProps = {
 } & Mark;
 
 function Mention({children, color}: MentionProps) {
-    // Mention doesn't inherit styles if I understand the spec correctly
     return (
         <div 
-            style={{backgroundColor: color, display: 'inline-block'}}
+            style={{
+                backgroundColor: color, 
+                display: 'inline-block',
+                padding: '0 4px',  // horizontal padding
+                borderRadius: '4px'
+            }}
         >
-            {children.map((
-                child,
-            ) => (
+            {children.map((child) => (
                 <BlockChildRenderer {...child} />
             ))}
         </div>
