@@ -3,23 +3,25 @@ import Block from "./Block";
 import Mention from "./Mention";
 import { TextProps } from "./Text";
 import Text from './Text';
-import type { MentionProps } from "./Mention";
+import { useContext } from "react";
+import { EditorContext } from "../Provider";
 
-function isText(child: BlockProps | TextProps | MentionProps): child is TextProps{
+function isText(child: BlockProps | TextProps): child is TextProps{
     return !('type' in child);
 }
 
-function isMention(child: BlockProps | MentionProps): child is MentionProps{
-    return child.type === 'mention';
-}
-
-function BlockChildRenderer(child: BlockProps | TextProps | MentionProps) {
+function BlockChildRenderer(child: BlockProps | TextProps) {
+    const { mentions, updateMention } = useContext(EditorContext);
     if (isText(child)) {
         return <Text {...child} />;
-        
     }
-    if (isMention(child)) {
-        return <Mention {...child} id={child.id} key={child.id} />;
+    if (child.type === 'mention') {
+        if (child.id){
+            if (!mentions[child.id]) {
+                updateMention(child.id, {...child});
+            }
+            return <Mention id={child.id} key={child.id} />;
+        }
     }
     return <Block {...child} />;
     

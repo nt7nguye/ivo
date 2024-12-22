@@ -1,5 +1,4 @@
 import BlockChildRenderer from "./BlockChildRender";
-import { MentionProps } from "./Mention";
 import { type TextProps } from "./Text";
 import type { Mark } from "./types";
 
@@ -9,7 +8,10 @@ type BlockType =  'mention' | 'clause' | 'block' |'h1' | 'h2' | 'h3' | 'h4' | 'h
 export type BlockProps = {
     title: string;  
     type: BlockType;
-    children: (BlockProps | TextProps | MentionProps)[];
+    children: (BlockProps | TextProps)[];
+    // mention only
+    id?: string;
+    value?: string;
 } & Mark;
 
 
