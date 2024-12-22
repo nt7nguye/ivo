@@ -1,14 +1,16 @@
 import './App.css'
-import Block from './components/Block';
-import Text from './components/Text';
+import Editor from './Editor';
 
 function App() {
+
   return (
-    <div>
-      <Block title="Hello World" type="block" children={[
+    <Editor input={{
+      title: "Hello World",
+      type: "block",
+      children: [
         {
-          "bold": true,
-          "text": "PARTIES"
+          bold: true,
+          text: "PARTIES"
         },
         {
           "text": "\n 1.  "
@@ -71,19 +73,8 @@ function App() {
         {
           "text": "."
         }
-      ]}>
-      </Block>
-      <Block title="Second block" type="h2" children={[
-        {text: 'Hello World', bold: true},
-        {text: 'Hello World', italic: true},
-        {text: 'Hello World', underline: true},
-      ]}>
-      </Block>
-      <p>
-        <Text text="Hello World" bold italic underline />
-        <Text text="Hello World" color="rgb(20, 170, 245)" />
-      </p>
-    </div>
+      ]}}
+    />
   )
 }
 
