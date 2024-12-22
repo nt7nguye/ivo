@@ -1,5 +1,5 @@
 import BlockChildRenderer from "./BlockChildRender";
-import Text, { type TextProps } from "./Text";
+import { type TextProps } from "./Text";
 import type { Mark } from "./types";
 
 type BlockType =  'mention' | 'clause' | 'ul' | 'li' | 'lic' | 'block' |'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
