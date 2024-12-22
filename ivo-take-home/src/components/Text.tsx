@@ -14,6 +14,7 @@ function Text({text, bold, italic, underline, color}: TextProps) {
             fontStyle: italic ? 'italic' : 'normal', 
             textDecoration: underline ? 'underline' : 'none',
             color: color ? color : 'white',
+            display: 'inline'
         }}>{text}</p>
     )
 }

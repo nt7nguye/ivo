@@ -11,7 +11,10 @@ function App() {
       <Text text="Hello World" bold italic />
       <Text text="Hello World" bold underline />
       <Text text="Hello World" italic underline />
-      <Text text="Hello World" bold italic underline />
+      <p>
+        <Text text="Hello World" bold italic underline />
+        <Text text="Hello World" color="rgb(20, 170, 245)" />
+      </p>
     </div>
   )
 }
