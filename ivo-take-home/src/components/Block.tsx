@@ -1,7 +1,7 @@
 import Text, { type TextProps } from "./Text";
 import type { Mark } from "./types";
 
-type BlockType =  'block' |'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
+type BlockType =  'clause' | 'block' |'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 
 export type BlockProps = {
     title: string;  
@@ -13,19 +13,31 @@ function isBlock(child: BlockProps | TextProps): child is BlockProps {
     return 'type' in child;
 }
 
+function BlockChildRenderer(child: BlockProps | TextProps) {
+    if (isBlock(child)) {
+        return <Block {...child} />;
+    }
+    return <Text {...child} />;
+}
+
 function Block({title, type, children, ...mark}: BlockProps) {
     if (type === "block") {
         return (
             <>
                 {children.map(
-                    (child) => {
-                        if (isBlock(child)) {
-                            return <Block {...mark} {...child} />;
-                        }
-                        return <Text {...mark} {...child} />;
-                    }
+                    (child) => <BlockChildRenderer {...mark} {...child} />
                 )}
             </>
+        )
+    }
+
+    if (type === 'clause') {
+        return (
+            <div>
+                {children.map(
+                    (child) => <BlockChildRenderer {...mark} {...child} />
+                )}
+            </div>
         )
     }
 
@@ -33,12 +45,7 @@ function Block({title, type, children, ...mark}: BlockProps) {
     return (
         <Component title={title} >
             {children.map(
-                (child) => {
-                    if (isBlock(child)) {
-                        return <Block {...mark} {...child} />;
-                    }
-                    return <Text {...mark} {...child} />;
-                }
+                (child) => <BlockChildRenderer {...mark} {...child} />
             )}
         </Component>
     );
