@@ -4,14 +4,16 @@ type TextProps = {
     bold?: boolean;
     italic?: boolean;
     underline?: boolean;
+    color?: string;
 }
 
-function Text({text, bold, italic, underline}: TextProps) {
+function Text({text, bold, italic, underline, color}: TextProps) {
     return (
         <p style={{
             fontWeight: bold ? 'bold' : 'normal', 
             fontStyle: italic ? 'italic' : 'normal', 
-            textDecoration: underline ? 'underline' : 'none'
+            textDecoration: underline ? 'underline' : 'none',
+            color: color ? color : 'white',
         }}>{text}</p>
     )
 }
