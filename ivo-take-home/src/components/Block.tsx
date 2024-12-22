@@ -1,5 +1,5 @@
 import BlockChildRenderer from "./BlockChildRender";
-import { type TextProps } from "./Text";
+import Text, { type TextProps } from "./Text";
 import type { Mark } from "./types";
 
 type BlockType =  'mention' | 'clause' | 'block' |'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
@@ -36,17 +36,27 @@ function Block({title, type, children, ...mark}: BlockProps) {
         )
     }
 
+    // TODO: persist changes would be cool
     const handleInput = (e: React.ChangeEvent<HTMLParagraphElement>) => {
         console.log(e.target.innerText);
     }
     if (type === 'p') {
-        return (
-            <p contentEditable suppressContentEditableWarning onInput={handleInput} style={{ display: 'inline'}}>
-                {children.map(
-                    (child, index) => <BlockChildRenderer key={index} {...mark} {...child} />
-                )}
-            </p>
-        )
+        if (children) {
+            return (
+                <p contentEditable suppressContentEditableWarning onInput={handleInput} style={{ display: 'inline'}}>
+                    {children.map(
+                        (child, index) => <BlockChildRenderer key={index} {...mark} {...child} />
+                    )}
+                </p>
+            )
+        }
+        // There's a weird case with p tag but no children, its just raw text
+        else {
+            return (
+                <Text {...mark} text={title} />
+            )
+        }
+        
     }
 
     const Component = type;
