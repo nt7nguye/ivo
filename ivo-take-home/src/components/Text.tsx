@@ -6,7 +6,9 @@ export type TextProps = {
 
 function Text({text, bold, italic, underline, color}: TextProps) {
     return (
-        <span 
+        <span
+            contentEditable
+            suppressContentEditableWarning 
             style={{
             fontWeight: bold ? 'bold' : 'normal', 
             fontStyle: italic ? 'italic' : 'normal', 
