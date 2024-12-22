@@ -1,11 +1,8 @@
+import { Mark } from "./types";
 
 export type TextProps = {
     text: string;
-    bold?: boolean;
-    italic?: boolean;
-    underline?: boolean;
-    color?: string;
-}
+} & Mark;
 
 function Text({text, bold, italic, underline, color}: TextProps) {
     return (
