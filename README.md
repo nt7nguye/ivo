@@ -34,12 +34,17 @@ https://github.com/user-attachments/assets/73de8621-2224-45de-963f-11e3ae96e163
 
 b) Mention component re-renders everything
 
-https://github.com/user-attachments/assets/3ef560e6-67d8-4053-964e-b0f32eb28ab5
+https://github.com/user-attachments/assets/16c9e182-29cd-4ddb-9f50-ec575f2b3169
+
+
+
 
 #### 2. I spent too much time on the mention re-rendering I couldn't get the clause working in time 😭 
 
 a) The number is in a different line because the first child of `clause` likes to be in its own block :( 
+
 b) I should have indentation based on level
+
 c) The numbering logic is kinda broken 
 
 
