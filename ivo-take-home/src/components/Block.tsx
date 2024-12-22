@@ -3,6 +3,7 @@ import type { Mark } from "./types";
 
 type BlockType =  'clause' | 'block' |'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 
+
 export type BlockProps = {
     title: string;  
     type: BlockType;
@@ -35,9 +36,21 @@ function Block({title, type, children, ...mark}: BlockProps) {
         return (
             <div>
                 {children.map(
-                    (child) => <BlockChildRenderer {...mark} {...child} />
+                    (child, index) => <BlockChildRenderer key={index} {...mark} {...child} />
                 )}
             </div>
+        )
+    }
+    const handleInput = (e: React.ChangeEvent<HTMLParagraphElement>) => {
+        console.log(e.target.innerText);
+    }
+    if (type === 'p') {
+        return (
+            <p contentEditable suppressContentEditableWarning onInput={handleInput} style={{ display: 'inline'}}>
+                {children.map(
+                    (child, index) => <BlockChildRenderer key={index} {...mark} {...child} />
+                )}
+            </p>
         )
     }
 
@@ -45,7 +58,7 @@ function Block({title, type, children, ...mark}: BlockProps) {
     return (
         <Component title={title} >
             {children.map(
-                (child) => <BlockChildRenderer {...mark} {...child} />
+                (child, index) => <BlockChildRenderer key={index} {...mark} {...child} />
             )}
         </Component>
     );

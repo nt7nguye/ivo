@@ -5,20 +5,16 @@ export type TextProps = {
 } & Mark;
 
 function Text({text, bold, italic, underline, color}: TextProps) {
-    const handleInput = (e: React.ChangeEvent<HTMLParagraphElement>) => {
-        console.log(e.target.innerText);
-    }
-
     return (
-        <p contentEditable suppressContentEditableWarning onInput={handleInput}
+        <span 
             style={{
             fontWeight: bold ? 'bold' : 'normal', 
             fontStyle: italic ? 'italic' : 'normal', 
             textDecoration: underline ? 'underline' : 'none',
             color: color ? color : 'white',
-            display: 'inline',
+            // display: 'inline-block',
             whiteSpace: 'pre-wrap'
-        }}>{text}</p>
+        }}>{text}</span>
     )
 }
 
